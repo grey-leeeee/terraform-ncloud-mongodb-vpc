@@ -75,6 +75,13 @@ variable "image_product_code" {
   default     = null
 }
 
+variable "engine_version_code" {
+  description = "(Optional) MongoDB engine version code. If not entered, generate with the default version currently available."
+  type        = string
+  default     = null
+}
+
+
 variable "member_product_code" {
   description = "(Optional) Member server product code. It can be obtained through data.ncloud_mongodb_products. Default: select the minimum specifications and must be based on 1. Memory and 2. CPU"
   type        = string
@@ -189,4 +196,33 @@ variable "member_port" {
   }
 }
 
+variable "mongos_port" {
+  description = "(Optional) TCP port number for access to the MongoDB Mongos Server. Default: 17017, Min: 10000, Max: 65535"
+  type        = number
+  default     = 17017
+  validation {
+    condition     = var.mongos_port >= 10000 && var.mongos_port <= 65535
+    error_message = "The mongos_port must be between 10000 and 65535."
+  }
+}
 
+variable "config_port" {
+  description = "(Optional) TCP port number for access to the MongoDB Config Server. Default: 17017, Min: 10000, Max: 65535"
+  type        = number
+  default     = 17017
+  validation {
+    condition     = var.config_port >= 10000 && var.config_port <= 65535
+    error_message = "The config_port must be between 10000 and 65535."
+  }
+}
+
+variable "compress_code" {
+  description = "(Optional) MongoDB Data Compression Algorithm Code allows you to select data compression algorithms provided by MongoDB. Default: SNPP, Options: SNPP | ZLIB | ZSTD | NONE"
+  type        = string
+  default     = "SNPP"
+
+  validation {
+    condition     = var.compress_code == "SNPP" || var.compress_code == "ZLIB" || var.compress_code == "ZSTD" || var.compress_code == "NONE"
+    error_message = "The compress_code must be either SNPP, ZLIB, ZSTD, or NONE."
+  }
+}

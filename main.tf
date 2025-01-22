@@ -7,6 +7,7 @@ resource "ncloud_mongodb" "mongodb" {
   subnet_no                    = var.subnet_no
   cluster_type_code            = var.cluster_type_code
   image_product_code           = var.image_product_code
+  engine_version_code          = var.engine_version_code
   member_product_code          = var.member_product_code
   arbiter_product_code         = var.arbiter_product_code
   mongos_product_code          = var.mongos_product_code
@@ -20,4 +21,7 @@ resource "ncloud_mongodb" "mongodb" {
   backup_time                  = var.backup_time
   data_storage_type            = var.data_storage_type
   member_port                  = var.member_port
+  mongos_port                  = var.mongos_port
+  config_port                  = var.config_port
+  compress_code                = var.compress_code
 }
