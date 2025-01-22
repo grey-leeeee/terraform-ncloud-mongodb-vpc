@@ -44,10 +44,11 @@ variable "user_password" {
     condition     = length(var.user_password) >= 8 && length(var.user_password) <= 20
     error_message = "The length of user_password must be between 8 and 20."
   }
-  validation {
-    condition     = can(regex("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).*$", var.user_password))
-    error_message = "The user_password must have at least 1 English letter, 1 number, and 1 special character."
-  }
+  # [Bug] Disable validation all scenarios are not allowed
+  # validation {
+  #   condition     = can(regex("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).*$", var.user_password))
+  #   error_message = "The user_password must have at least 1 English letter, 1 number, and 1 special character."
+  # }
 }
 
 variable "vpc_no" {
