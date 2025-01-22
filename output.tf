@@ -8,11 +8,6 @@ output "arbiter_port" {
   value       = ncloud_mongodb.mongodb.arbiter_port
 }
 
-output "engine_version" {
-  description = "Engine Version."
-  value       = ncloud_mongodb.mongodb.engine_version
-}
-
 output "region_code" {
   description = "Region code."
   value       = ncloud_mongodb.mongodb.region_code
