@@ -109,7 +109,7 @@ variable "config_product_code" {
 variable "shard_count" {
   description = "(Optional, Changeable) The number of MongoDB Shards. The number of shards can be defined for sharding. Only 2 or 3 are allowed for the initial configuration. Only enter when cluster_type_code is SHARDED_CLUSTER. Default: 2, Min: 2, Max: 5"
   type        = number
-  default     = null
+  default     = 2
   validation {
     condition     = var.shard_count == null || (var.shard_count >= 2 && var.shard_count <= 5)
     error_message = "The shard_count must be between 2 and 5, or null if sharding is not used."
@@ -137,9 +137,9 @@ variable "arbiter_server_count" {
 }
 
 variable "mongos_server_count" {
-  description = "(Optional, Changeable) The number of MongoDB Mongos servers. If sharding is used, the number of mongos servers can be selected between 2 and 5. If sharding is not used, this value should be set to null."
+  description = "(Optional, Changeable) The number of MongoDB Mongos servers. If sharding is used, the number of mongos servers can be selected. Default: 2, Min: 2, Max: 5"
   type        = number
-  default     = null
+  default     = 2
   validation {
     condition     = var.mongos_server_count == null || (var.mongos_server_count >= 2 && var.mongos_server_count <= 5)
     error_message = "The mongos_server_count must be between 2 and 5, or null if sharding is not used."
@@ -147,9 +147,9 @@ variable "mongos_server_count" {
 }
 
 variable "config_server_count" {
-  description = "(Optional, Changeable) The number of MongoDB Config servers. If sharding is used, the config server count can be defined and must initially be exactly 3. After the initial setup, the count can be adjusted between 3 and 7."
+  description = "(Optional, Changeable) The number of MongoDB Config servers. If sharding is used, the config server's logarithm can be selected. Only 3 are allowed for the initial configuration. Default: 3, Min: 3, Max: 7"
   type        = number
-  default     = null
+  default     = 3
   validation {
     condition     = var.config_server_count == null || (var.config_server_count >= 3 && var.config_server_count <= 7)
     error_message = "The config_server_count must be between 3 and 7 or null if sharding is not used."
