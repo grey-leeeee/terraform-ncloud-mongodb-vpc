@@ -112,7 +112,7 @@ variable "shard_count" {
   type        = number
   default     = null
   validation {
-    condition     = var.shard_count == null || (var.shard_count >= 2 && var.shard_count <= 5)
+    condition     = var.cluster_type_code != "SHARED_CLUSTER" ? var.shard_count == null : (var.shard_count >= 2 && var.shard_count <= 5)
     error_message = "The shard_count must be between 2 and 5, or null if sharding is not used."
   }
 }
