@@ -171,8 +171,8 @@ variable "backup_time" {
   type        = string
   default     = "02:00"
   validation {
-    condition     = can(regex("^(0[0-9]|1[0-9]|2[0-3])[0-5][0-9]$", var.backup_time))
-    error_message = "The backup_time must be in HHMM format and in 15-minute increments."
+    condition     = can(regex("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$", var.backup_time))
+    error_message = "The backup_time must be in HH:MM format and in 15-minute increments."
   }
 }
 
