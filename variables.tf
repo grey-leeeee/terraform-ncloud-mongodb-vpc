@@ -110,7 +110,7 @@ variable "config_product_code" {
 variable "shard_count" {
   description = "(Optional, Changeable) The number of MongoDB Shards. The number of shards can be defined for sharding. Only 2 or 3 are allowed for the initial configuration. Only enter when cluster_type_code is SHARDED_CLUSTER. Default: 2, Min: 2, Max: 5"
   type        = number
-  default     = 2
+  default     = null
   validation {
     condition     = var.shard_count == null || (var.shard_count >= 2 && var.shard_count <= 5)
     error_message = "The shard_count must be between 2 and 5, or null if sharding is not used."
